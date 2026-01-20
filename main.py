@@ -5,10 +5,21 @@ import cv2
 import json
 import re
 
-from ocr import extract_text_from_image_bytes  # we'll modify this
+from ocr import extract_text_from_image_bytes  
 from llm_extractor import extract_fields
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 def safe_json_parse(text: str):
     if not text:
