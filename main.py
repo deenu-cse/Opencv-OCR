@@ -42,3 +42,7 @@ async def extract_data(
         "ocr_text": ocr_text,
         "extracted_data": parsed_data
     }
+
+@app.get("/ping")
+def root():
+    return {"status": "API is running"}
